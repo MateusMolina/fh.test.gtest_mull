@@ -1,7 +1,7 @@
 [workarea]
 
 # base path (absolute or relative) to look for C/C++ files to mutate.
-root = "."
+root = "/home/iese/Documents/fh.test.gtest_mull/50_32_withDextool/test50/"
 
 # only those files that fully match the glob filter will be mutated.
 # glob filter are relative to root.
@@ -18,11 +18,11 @@ mutants = ["lcr", "lcrb", "sdl", "uoi", "dcr"]
 [analyze]
 
 # glob filter which matched files (relative to root) to be used for static analysis information.
-#include = ["*"]
+include = ["*"]
 exclude = ["include/*", "test/*"]
 
 # number of threads to be used for analysis (default is the number of cores).
-threads = 1
+#threads = 1
 
 # remove files from the database that are no longer found during analysis.
 prune = true
@@ -42,7 +42,7 @@ test_paths = ["test"]
 # Using relaxed make allows functions to be moved inside a file without
 # triggering the mutants in the functions to be re-tested
 # available options are: "strict", "relaxed"
-id_algo = "relaxed"
+#id_algo = "relaxed"
 
 [schema]
 
@@ -151,7 +151,7 @@ test_cmd = "./test.sh"
 
 # built-in analyzer of output from testing frameworks to find failing test cases
 # available options are: ["gtest", "ctest", "makefile", "test_cmd"]
-analyze_using_builtin = ["gtest"]
+analyze_using_builtin = ["ctest"]
 
 # determine in what order mutants are chosen
 # available options are: "random" "consecutive" "bySize"
