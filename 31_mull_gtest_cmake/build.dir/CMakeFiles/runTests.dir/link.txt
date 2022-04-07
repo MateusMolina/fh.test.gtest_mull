@@ -1,1 +1,0 @@
-/usr/bin/clang++-12 -O0 -fexperimental-new-pass-manager -fpass-plugin=/usr/lib/mull-ir-frontend-12 -g -grecord-command-line -rdynamic CMakeFiles/runTests.dir/tests.cpp.o -o runTests  /usr/lib/x86_64-linux-gnu/libgtest.a -lpthread -lpthread 
