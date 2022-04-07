@@ -1,0 +1,1 @@
+clang-12 -fexperimental-new-pass-manager   -fpass-plugin=/lib/mull-ir-frontend-12   -g -grecord-command-line   main.cpp -o hello-world
