@@ -1,1 +1,2 @@
-#TODO write mutator script
+dextool mutate analyze
+dextool mutate test
