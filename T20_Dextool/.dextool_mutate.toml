@@ -1,28 +1,32 @@
 [workarea]
 
 # base path (absolute or relative) to look for C/C++ files to mutate.
-root = "/home/iese/fh.test.gtest_mull/T20_Dextool/"
+root = "."
 
 # only those files that fully match the glob filter will be mutated.
 # glob filter are relative to root.
-include = ["src/*", "include/*"]
+include = ["src/*"]
 exclude = []
 
 [generic]
 
 # default mutants to test if none is specified by --mutant
 # note that this affects the analyze phase thus the --mutant argument must be one of those specified here
-# available options are: ["all", "ror", "rorp", "lcr", "aor", "uoi", "sdl", "dcr", "lcrb", "aors"]
-mutants = ["lcr", "lcrb", "sdl", "uoi", "dcr"]
+# available options are: ["all", "ror", "rorp", "lcr", "aor", "uoi", "sdl", "dcr", "lcrb"]
+# **FOR THE READER**
+# the recommended is ["lcr", "lcrb", "sdl", "uoi", "dcr"]
+# but the config only uses lcr/lcrb so **you** will quickly will get to test
+# the test and report phase.
+mutants = ["lcr", "lcrb", "sdl", "uoi", "dcr", "aors", "rorp"]
 
 [analyze]
 
 # glob filter which include/exclude matched files (relative to root) from analysis.
-include = ["*"]
-exclude = []
+# include = ["*"]
+exclude = ["test/*"]
 
 # number of threads to be used for analysis (default is the number of cores).
-# threads = 8
+# threads = 1
 
 # remove files from the database that are no longer found during analysis.
 prune = true
@@ -36,8 +40,9 @@ test_paths = ["test"]
 # test_include = ["*/*.ext"]
 # test_exclude = []
 
-[schema]
+id_algo = "relaxed"
 
+[schema]
 # Use scheman to reduce the compile+link time
 use = true
 
@@ -62,7 +67,6 @@ use = true
 check_schemata = true
 
 [coverage]
-
 # Use coverage to reduce the tested mutants
 use = true
 
@@ -84,7 +88,7 @@ db = "dextool_mutate.sqlite3"
 [compiler]
 
 # extra flags to pass on to the compiler such as the C++ standard.
-extra_flags = ["-Iinc"]
+# extra_flags = []
 
 # force system includes to use -I instead of -isystem
 # force_system_includes = false
@@ -99,7 +103,7 @@ extra_flags = ["-Iinc"]
 [compile_commands]
 
 # files and/or directories to look for compile_commands.json.
-# search_paths = ["./compile_commands.json"]
+search_paths = ["./build/compile_commands.json"]
 
 # compile flags to remove when analyzing a file.
 # filter = ["-c", "-o", "-m", "-nodevicelib", "-Waddr-space-convert", "-non-static", "-Bstatic", "-Bdynamic", "-Xbind-lazy", "-Xbind-now", "-f", "-static", "-shared", "-rdynamic", "-s", "-l", "-L", "-z", "-u", "-T", "-Xlinker", "-l", "-MT", "-MF", "-MD", "-MQ", "-MMD", "-MP", "-MG", "-E", "-cc1", "-S", "-M", "-MM", "-###"]
@@ -125,7 +129,6 @@ build_cmd = ["./build.sh"]
 # 1. ["test1.sh", "test2.sh"]
 # 2. [["test1.sh", "-x"], "test2.sh"]
 # 3. [["/bin/make", "test"]]
-# test_cmd = ["./test.sh"]
 test_cmd = ["./test.sh"]
 
 # timeout to use for the test suite (by default a measurement-based heuristic will be used).
@@ -138,11 +141,11 @@ test_cmd = ["./test.sh"]
 # analyze_cmd = "analyze.sh"
 
 # built-in analyzer of output from testing frameworks to find failing test cases
-analyze_using_builtin = ["makefile"]
+analyze_using_builtin = ["gtest"]
 
 # determine in what order mutants are chosen
 # available options are: "random" "consecutive" "bySize"
-# order = "bySize"
+# order = "random"
 
 # how to behave when new test cases are found
 # available options are: "doNothing" "resetAlive"
@@ -162,10 +165,10 @@ oldest_mutants = "test"
 # how many of the oldest mutants to do the above with
 # oldest_mutants_nr = 10
 # how many of the oldest mutants to do the above with
-oldest_mutants_percentage = 1.0
+oldest_mutants_percentage = 50.0
 
 # number of threads to be used when running tests in parallel (default is the number of cores).
-# parallel_test = 8
+# parallel_test = 1
 
 # stop executing tests as soon as a test command fails.
 # This speed up the test phase but the report of test cases killing mutants is less accurate
@@ -191,7 +194,7 @@ test_cmd_checksum = true
 
 # default style to use
 # available options are: "plain" "compiler" "json" "html"
-style = "html"
+style = "plain"
 
 # default report sections when no --section is specified
 # available options are: ["alive", "killed", "all_mut", "summary", "mut_stat", "tc_killed", "tc_stat", "tc_map", "tc_suggestion", "tc_killed_no_mutants", "tc_full_overlap", "tc_full_overlap_with_mutation_id", "tc_groups", "tc_min_set", "tc_similarity", "tc_groups_similarity", "treemap", "mut_recommend_kill", "diff", "tc_unique", "marked_mutants", "trend"]

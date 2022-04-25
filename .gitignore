@@ -3,3 +3,4 @@ build.dir/
 *.out
 *.sqlite3
 tmp/
+html/

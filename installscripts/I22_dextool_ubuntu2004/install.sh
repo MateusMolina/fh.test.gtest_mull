@@ -20,7 +20,7 @@ sudo apt-get update
 
 # 2 Install script dependencies
 printStep "Installing Script dependencies"
-sudo apt-get install -y wget curl
+sudo apt-get install -y wget curl git
 
 # 3 Install Clang env
 printStep "Installing Clang env"

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "../include/validage.h"
 
-bool moreTests = false;
+bool moreTests = true;
 
 TEST(ValidAgeTest, PositiveNos) {
     ASSERT_EQ(true, valid_age(30));
