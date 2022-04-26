@@ -1,4 +1,4 @@
-#include "bank.hpp"
+#include "../src/bank.hpp"
 #include <iostream>
 #include <sstream>
 

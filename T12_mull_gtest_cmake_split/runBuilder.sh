@@ -2,7 +2,6 @@
 
 if [ -d 'build' ] ; then
     rm -rf ./build/*
-    echo "tem build"
 else
     mkdir build
 fi

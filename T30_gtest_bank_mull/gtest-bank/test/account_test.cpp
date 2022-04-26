@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include "bank.hpp"
+#include "../src/bank.hpp"
 
 #include <gtest/gtest.h>
 
